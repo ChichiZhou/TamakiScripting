@@ -19,9 +19,13 @@ public class DesignerHook extends AbstractDesignerModuleHook {
 
     private final Logger logger = LoggerFactory.getLogger("Tamaki Scripting");
 
+    private DesignerContext context;
+
     @Override
     public void startup(DesignerContext context, LicenseState activationState) throws Exception {
         super.startup(context, activationState);
+
+        this.context = context;
 
         BundleUtil.get().addBundle("DBUtils", AbstractDBUtils.class, "DBUtils");
         BundleUtil.get().addBundle("SecurityUtils", AbstractSecurityUtils.class, "SecurityUtils");
@@ -42,15 +46,10 @@ public class DesignerHook extends AbstractDesignerModuleHook {
     @Override
     public void initializeScriptManager(ScriptManager manager) {
         super.initializeScriptManager(manager);
-        logger.info("Initalizing Utility Scripts");
-        manager.addScriptModule("system.util", new ClientSystemUtils(), new PropertiesFileDocProvider());
-        logger.info("Initalizing Tag Scripts");
+        manager.addScriptModule("system.util", new ClientSystemUtils(context), new PropertiesFileDocProvider());
         manager.addScriptModule("system.tag", new ClientTagUtils(), new PropertiesFileDocProvider());
-        logger.info("Initalizing DB Scripts");
         manager.addScriptModule("system.db", new ClientDBUtils(), new PropertiesFileDocProvider());
-        logger.info("Initalizing GUI Scripts");
         manager.addScriptModule("system.gui", new ClientGUIUtils(), new PropertiesFileDocProvider());
-        logger.info("Initalizing PDF Scripts");
         manager.addScriptModule("system.pdf", new ClientPDFUtils(), new PropertiesFileDocProvider());
 
     }

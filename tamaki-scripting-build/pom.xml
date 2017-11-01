@@ -85,7 +85,7 @@
                     <moduleId>com.tamakicontrol.modules.scripting.tamaki-scripting</moduleId>
                     <moduleName>Tamaki Scripting</moduleName>
                     <moduleDescription>${project.description}</moduleDescription>
-                    <moduleVersion>1.9.0.${maven.build.timestamp}</moduleVersion>
+                    <moduleVersion>1.9.2.${maven.build.timestamp}</moduleVersion>
                     <requiredIgnitionVersion>7.9.0</requiredIgnitionVersion>
                     <requiredFrameworkVersion>7</requiredFrameworkVersion>
                     <freeModule>true</freeModule>

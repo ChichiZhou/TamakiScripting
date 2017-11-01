@@ -28,6 +28,25 @@
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.inductiveautomation.vision:vision-designer:9.9.2" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.inductiveautomation.vision:vision-client:9.9.2" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.inductiveautomation.vision:vision-common:9.9.2" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: com.inductiveautomation.ignition:common:7.9.2" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.apache.commons:commons-lang3:3.3.2" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.bouncycastle:bcprov-jdk16-unsign:1.46" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.python:jython:2.5.3-ia3" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.slf4j:slf4j-api:1.7.21" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.slf4j:log4j-over-slf4j:1.7.21" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.slf4j:jul-to-slf4j:1.7.21" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: ch.qos.logback:logback-classic:1.1.7" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: ch.qos.logback:logback-core:1.1.7" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: joda-time:joda-time:2.3" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: com.google.code.gson:gson:2.8.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: com.inductiveautomation.ignition:client-api:7.9.2" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: com.inductiveautomation.ignition:active-query-builder:7.9.2" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: com.inductiveautomation.ignition:client-bootstrap:7.9.2" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: net.java.dev.timingframework:timingframework:1.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: com.inductiveautomation.ignition:designer:7.9.2" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: com.inductiveautomation.vision:vision-designer:9.9.2" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: com.inductiveautomation.vision:vision-client:9.9.2" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: com.inductiveautomation.vision:vision-common:9.9.2" level="project" />
     <orderEntry type="module" module-name="tamaki-scripting-common" />
     <orderEntry type="library" name="Maven: org.apache.pdfbox:pdfbox:2.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.pdfbox:fontbox:2.0.2" level="project" />

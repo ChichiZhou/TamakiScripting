@@ -1,20 +1,29 @@
 package com.tamakicontrol.modules.scripting.client.scripts;
 
 import com.inductiveautomation.ignition.client.gateway_interface.ModuleRPCFactory;
+import com.inductiveautomation.ignition.common.model.BaseContext;
+import com.inductiveautomation.ignition.client.model.ClientContext;
+
 import com.tamakicontrol.modules.scripting.AbstractSystemUtils;
-import com.tamakicontrol.modules.scripting.DBUtilProvider;
 import com.tamakicontrol.modules.scripting.SystemUtilProvider;
-import org.python.core.PyObject;
 
 public class ClientSystemUtils extends AbstractSystemUtils {
 
     private final SystemUtilProvider rpc;
 
-    public ClientSystemUtils(){
+    ClientContext context;
+
+    public ClientSystemUtils(ClientContext context){
+        this.context = context;
+
         rpc = ModuleRPCFactory.create(
                 "com.tamakicontrol.modules.scripting.tamaki-scripting",
                 SystemUtilProvider.class
         );
     }
 
+    @Override
+    public BaseContext getContextImpl() throws Exception {
+        return this.context;
+    }
 }

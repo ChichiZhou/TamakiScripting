@@ -42,7 +42,7 @@ public class GatewayHook extends AbstractGatewayModuleHook {
     @Override
     public void initializeScriptManager(ScriptManager manager) {
         super.initializeScriptManager(manager);
-        manager.addScriptModule("system.util", new GatewaySystemUtils(), new PropertiesFileDocProvider());
+        manager.addScriptModule("system.util", new GatewaySystemUtils(context), new PropertiesFileDocProvider());
         manager.addScriptModule("system.user", new GatewaySecurityUtils(), new PropertiesFileDocProvider());
         manager.addScriptModule("system.db", new GatewayDBUtils(context), new PropertiesFileDocProvider());
         manager.addScriptModule("system.pdf", new GatewayPDFUtils(), new PropertiesFileDocProvider());

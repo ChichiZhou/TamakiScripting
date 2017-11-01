@@ -18,7 +18,7 @@ public class GatewayRPCHandler {
     public GatewayRPCHandler(GatewayContext context){
         this.context = context;
         dbUtils = new GatewayDBUtils(context);
-        systemUtils = new GatewaySystemUtils();
+        systemUtils = new GatewaySystemUtils(context);
     }
 
 
