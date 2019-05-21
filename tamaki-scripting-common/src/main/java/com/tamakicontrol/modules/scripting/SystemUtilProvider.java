@@ -1,6 +1,6 @@
 package com.tamakicontrol.modules.scripting;
 
-import com.inductiveautomation.ignition.common.model.BaseContext;
+import com.inductiveautomation.ignition.common.model.CommonContext;
 import org.python.core.PyObject;
 
 public interface SystemUtilProvider {
@@ -9,7 +9,7 @@ public interface SystemUtilProvider {
 
     String getStackTrace() throws Exception;
 
-    BaseContext getContext() throws Exception;
+    CommonContext getContext() throws Exception;
 
     void addToTaskQueue(PyObject object) throws Exception;
 

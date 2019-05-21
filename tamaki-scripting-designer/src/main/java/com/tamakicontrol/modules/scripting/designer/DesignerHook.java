@@ -47,11 +47,10 @@ public class DesignerHook extends AbstractDesignerModuleHook {
     public void initializeScriptManager(ScriptManager manager) {
         super.initializeScriptManager(manager);
         manager.addScriptModule("system.util", new ClientSystemUtils(context), new PropertiesFileDocProvider());
-        manager.addScriptModule("system.tag", new ClientTagUtils(context), new PropertiesFileDocProvider());
+        manager.addScriptModule("system.tag", ClientTagUtils.getInstance(), new PropertiesFileDocProvider());
         manager.addScriptModule("system.db", new ClientDBUtils(), new PropertiesFileDocProvider());
         manager.addScriptModule("system.gui", new ClientGUIUtils(), new PropertiesFileDocProvider());
         manager.addScriptModule("system.pdf", new ClientPDFUtils(), new PropertiesFileDocProvider());
-
     }
 
     @Override

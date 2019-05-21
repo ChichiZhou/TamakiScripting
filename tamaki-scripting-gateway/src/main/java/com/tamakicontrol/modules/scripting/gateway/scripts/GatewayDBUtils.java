@@ -1,6 +1,5 @@
 package com.tamakicontrol.modules.scripting.gateway.scripts;
 
-import com.inductiveautomation.ignition.gateway.localdb.DBInterface;
 import com.inductiveautomation.ignition.gateway.localdb.persistence.PersistenceSession;
 import com.inductiveautomation.ignition.gateway.model.GatewayContext;
 

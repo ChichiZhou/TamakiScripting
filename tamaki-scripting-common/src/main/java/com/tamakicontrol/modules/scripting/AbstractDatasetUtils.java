@@ -68,11 +68,6 @@ public class AbstractDatasetUtils {
         }
 
         @Override
-        protected boolean validateArgType(int argNum, Class<?> type) {
-            return type.isAssignableFrom(Dataset.class);
-        }
-
-        @Override
         protected String getFunctionDisplayName() {
             return "toTamakiDataset";
         }

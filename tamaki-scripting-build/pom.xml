@@ -45,7 +45,7 @@
             <plugin>
                 <groupId>com.inductiveautomation.ignitionsdk</groupId>
                 <artifactId>ignition-maven-plugin</artifactId>
-                <version>1.0.12</version>
+                <version>1.1.0</version>
 
                 <executions>
                     <execution>
@@ -88,9 +88,9 @@
                     <moduleId>com.tamakicontrol.modules.scripting.tamaki-scripting</moduleId>
                     <moduleName>Tamaki Scripting</moduleName>
                     <moduleDescription>${project.description}</moduleDescription>
-                    <moduleVersion>1.9.2.${maven.build.timestamp}</moduleVersion>
-                    <requiredIgnitionVersion>7.9.0</requiredIgnitionVersion>
-                    <requiredFrameworkVersion>7</requiredFrameworkVersion>
+                    <moduleVersion>8.0.0.${maven.build.timestamp}</moduleVersion>
+                    <requiredIgnitionVersion>8.0.0</requiredIgnitionVersion>
+                    <requiredFrameworkVersion>8</requiredFrameworkVersion>
                     <freeModule>true</freeModule>
 
                     <hooks>

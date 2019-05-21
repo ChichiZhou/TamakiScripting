@@ -1,12 +1,23 @@
 package com.tamakicontrol.modules.scripting;
 
 import com.inductiveautomation.ignition.common.BundleUtil;
+import com.inductiveautomation.ignition.common.config.ExtendedPropertySet;
+import com.inductiveautomation.ignition.common.config.PropertyValue;
+import com.inductiveautomation.ignition.common.model.CommonContext;
+import com.inductiveautomation.ignition.common.model.values.QualifiedValue;
 import com.inductiveautomation.ignition.common.script.hints.ScriptArg;
 import com.inductiveautomation.ignition.common.script.hints.ScriptFunction;
 import com.inductiveautomation.ignition.common.sqltags.model.event.TagChangeListener;
+import com.inductiveautomation.ignition.common.tags.model.TagPath;
+import com.inductiveautomation.ignition.common.tags.paths.parser.TagPathParser;
 import org.python.core.PyObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import javax.annotation.Nullable;
+import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public abstract class AbstractTagUtils implements TagUtilProvider {
 
@@ -18,6 +29,14 @@ public abstract class AbstractTagUtils implements TagUtilProvider {
         );
     }
 
+    private static final Logger logger = LoggerFactory.getLogger(AbstractTagUtils.class);
+
+    protected CommonContext context;
+
+    public AbstractTagUtils(CommonContext context){
+        this.context = context;
+    }
+
     @Override
     @ScriptFunction(docBundlePrefix = "TagUtils")
     public Object getParameterValue(
@@ -27,43 +46,33 @@ public abstract class AbstractTagUtils implements TagUtilProvider {
         return getParameterValueImpl(tagPath, paramName);
     }
 
-    protected abstract Object getParameterValueImpl(String tagPath, String paramName);
+    protected Object getParameterValueImpl(String tagPath, String paramName) {
+        ExtendedPropertySet parameters = (ExtendedPropertySet)read(tagPath + ".ExtendedProperties").getValue();
 
-    @Override
-    @ScriptFunction(docBundlePrefix = "TagUtils")
-    public TagChangeListener subscribe(@ScriptArg("tagPath") String tagPath, @ScriptArg("onChange") PyObject onChange) throws Exception {
-        return subscribeImpl(tagPath, onChange);
+        try {
+            for (PropertyValue param : parameters) {
+                if (param.getProperty().getName().equals(paramName))
+                    return param.getValue();
+            }
+        }catch(Exception e){
+            return null;
+        }
+
+        return null;
     }
 
-    protected abstract TagChangeListener subscribeImpl(String tagPath, PyObject onChange) throws Exception;
+    @Nullable
+    protected QualifiedValue read(String tagPath){
 
-    @Override
-    @ScriptFunction(docBundlePrefix = "TagUtils")
-    public List<TagChangeListener> subscribeAll(@ScriptArg("tagPaths") List<String> tagPaths,
-                                                @ScriptArg("changeHandlers") List<PyObject> changeHandlers)
-            throws Exception {
-        return subscribeAllImpl(tagPaths, changeHandlers);
+        List<TagPath> tagPaths = Arrays.asList(TagPathParser.parseSafe(tagPath + ".ExtendedProperties"));
+
+        try {
+            return context.getTagManager().readAsync(tagPaths).get().get(0);
+        }catch (ExecutionException | InterruptedException e){
+            logger.error("Exception thrown while reading tag", e);
+        }
+
+        return null;
     }
-
-    protected abstract List<TagChangeListener> subscribeAllImpl(List<String> tagPaths, List<PyObject> changeHandlers)
-            throws Exception;
-
-    @Override
-    @ScriptFunction(docBundlePrefix = "TagUtils")
-    public void unsubscribe(@ScriptArg("tagPath") String tagPath, @ScriptArg("onChange") TagChangeListener onChange)
-            throws Exception {
-        unsubscribeImpl(tagPath, onChange);
-    }
-
-    protected abstract void unsubscribeImpl(String tagPath, TagChangeListener onChange) throws Exception;
-
-    @Override
-    @ScriptFunction(docBundlePrefix = "TagUtils")
-    public void unsubscribeAll(@ScriptArg("tagPaths") List<String> tagPaths,
-                               @ScriptArg("changeHandlers") List<TagChangeListener> changeHandlers) throws Exception {
-        unsubscribeAllImpl(tagPaths, changeHandlers);
-    }
-
-    protected abstract void unsubscribeAllImpl(List<String> tagPaths, List<TagChangeListener> changeHandlers) throws Exception;
 
 }
